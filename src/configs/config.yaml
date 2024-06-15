@@ -1,0 +1,30 @@
+df_train:
+  path_to_data: animals_dataset_train.csv
+
+df_val:
+  path_to_data: animals_dataset_val.csv
+
+train_loader:
+  batch_size: 8
+  shuffle: True
+  pin_memory: True
+  num_workers: 6
+
+val_loader:
+  batch_size: 8
+  shuffle: False
+  pin_memory: True
+  num_workers: 6
+
+model:
+  num_classes: 10
+  num_features: 768
+  m: 0.8
+  s: 30.0
+
+optimizer:
+  learning_rate: 0.001
+
+train_fn:
+  epochs: 10
+  model_path: checkpoints/animal_classification.ckpt
