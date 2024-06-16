@@ -20,7 +20,7 @@ def main(cfg_path: str):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = DinoVisionTransformerClassifier(cfg.model.num_classes, cfg.model.num_features, 
                                             cfg.model.s, cfg.model.m)
-    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.optimizer.learning_rate) 
+    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.optimizer.learning_rate1) 
     criterion = nn.CrossEntropyLoss()
 
     transform = A.Compose([
@@ -45,7 +45,10 @@ def main(cfg_path: str):
     }
 
     os.makedirs('checkpoints', exist_ok=True)
-    train_fn(model, device, dataloaders, optimizer, criterion, cfg.train_fn.epochs, cfg.train_fn.model_path)
+    train_fn(model, device, dataloaders, optimizer, criterion, cfg.train_fn.epochs1, cfg.train_fn.model_path, requires_grad=False)
+    
+    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.optimizer.learning_rate2) 
+    train_fn(model, device, dataloaders, optimizer, criterion, cfg.train_fn.epochs2, cfg.train_fn.model_path, requires_grad=True)
 
 if __name__ == '__main__':
     main()

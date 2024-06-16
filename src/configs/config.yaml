@@ -1,8 +1,8 @@
 df_train:
-  path_to_data: animals_dataset_train.csv
-
+  path_to_data: /home/jupyter/datasphere/project/snow_leopard_detection/animals_dataset_train.csv
+  
 df_val:
-  path_to_data: animals_dataset_val.csv
+  path_to_data: /home/jupyter/datasphere/project/snow_leopard_detection/animals_dataset_train.csv
 
 train_loader:
   batch_size: 8
@@ -23,8 +23,10 @@ model:
   s: 30.0
 
 optimizer:
-  learning_rate: 0.001
+  learning_rate1: 0.0001
+  learning_rate2: 0.00001
 
 train_fn:
-  epochs: 10
-  model_path: checkpoints/animal_classification.ckpt
+  epochs1: 10
+  epochs2: 5
+  model_path: /home/jupyter/datasphere/project/snow_leopard_detection/checkpoints/animal_classification.ckpt
