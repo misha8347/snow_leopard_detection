@@ -3,11 +3,20 @@ from torch.utils.data import Dataset
 import pandas as pd
 import cv2
 
+
+def sample_label(group, max_samples):
+    if len(group) > max_samples:
+        return group.sample(max_samples)
+    else:
+        return group
+
+
 class AnimalsDataset(Dataset):
-    def __init__(self, path_to_csv, transform=None):
+    def __init__(self, path_to_csv, transform, max_samples):
         super().__init__()
         self.items = pd.read_csv(path_to_csv)
         self.items = self.items[~self.items['label'].isin(['noise', 'fox'])]
+        self.items = self.items.groupby('label').apply(sample_label, max_samples=max_samples).reset_index(drop=True)
         
         self.animal_mapping = {'bear': 0,
                              'bird': 1,

@@ -28,8 +28,8 @@ def main(cfg_path: str):
         A.Normalize(mean=0.5, std=0.5, max_pixel_value=255),
         ToTensorV2()
     ])
-    df_train = AnimalsDataset(cfg.df_train.path_to_data, transform)
-    df_val = AnimalsDataset(cfg.df_val.path_to_data, transform)
+    df_train = AnimalsDataset(cfg.df_train.path_to_data, transform, max_samples=cfg.df_train.max_samples_per_class)
+    df_val = AnimalsDataset(cfg.df_val.path_to_data, transform, max_samples=cfg.df_val.max_samples_per_class)
     
     train_loader = DataLoader(df_train, batch_size=cfg.train_loader.batch_size, 
                               shuffle=cfg.train_loader.shuffle, pin_memory=cfg.train_loader.pin_memory,
