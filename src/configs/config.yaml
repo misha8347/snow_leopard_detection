@@ -2,7 +2,7 @@ df_train:
   path_to_data: /home/jupyter/datasphere/project/snow_leopard_detection/animals_dataset_train.csv
   
 df_val:
-  path_to_data: /home/jupyter/datasphere/project/snow_leopard_detection/animals_dataset_train.csv
+  path_to_data: /home/jupyter/datasphere/project/snow_leopard_detection/animals_dataset_val.csv
 
 train_loader:
   batch_size: 8
